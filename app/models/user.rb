@@ -3,7 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,         
          :omniauthable, omniauth_providers: [:google_oauth2, :oktaoauth]
 
-  devise :trackable, :timeoutable, :timeout_in => 10.minutes
+  devise :trackable, :timeoutable, :timeout_in => 60.minutes
 
    def self.from_omniauth(response)
     user = User.where(email: response[:info]['email']).first

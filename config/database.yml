@@ -21,7 +21,7 @@ default: &default
 
 development:
   <<: *default
-  database: ruby_learnings_demo_foreman_development
+  database: learnings
   host: localhost
   port: 5432
   username: postgres

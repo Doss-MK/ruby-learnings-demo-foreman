@@ -1,12 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Login from './Login';
+import Profile from './Profile';
 
-function Welcome(props) {
-  return <h1>Welcome World!!1sfsdfsdf1</h1>;
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+
+import userReducer from '../features/User'
+
+const store = configureStore({
+  reducer: {
+    user: userReducer
+  }
+});
+
+const Welcome = (props) => {
+  return(
+    <>
+      <Profile />
+      <Login />
+    </>
+  );
 }
 
 const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container);
-root.render(<Welcome />);
+if(container) {
+  const root = ReactDOM.createRoot(container);
+  root.render(
+    <Provider store={store}>
+      <Welcome />
+    </Provider>
+  );
+}
 
 export default Welcome;
