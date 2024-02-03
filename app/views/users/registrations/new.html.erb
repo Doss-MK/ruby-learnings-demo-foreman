@@ -1,0 +1,31 @@
+<div class="container mx-auto mt-5 w-50 p-5">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    
+    <%= render "users/shared/error_messages", resource: resource %>
+
+    <div class="text-center mb-3">
+       <%= image_tag "developer.png", width: 100, height: 100 %>
+       <small class="text-muted d-block mt-2">Sign Up</small>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control rounded-0 shadow-none", placeholder: "Your Email" %>
+      <small class="form-text text-muted">We never share your details</small>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control rounded-0 shadow-none', placeholder: "New Password" %>
+      <small class="form-text text-muted">Password should be contains numbers, alphabets, symbols (<%= @minimum_password_length %> characters minimum).</small>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= f.password_field :password_confirmation, autocomplete: "confirm-password", class: 'form-control rounded-0 shadow-none', placeholder: "Confirm Password" %>
+      <small class="form-text text-muted">Password should be contains numbers, alphabets, symbols (<%= @minimum_password_length %> characters minimum).</small>
+    </div>
+
+    <%= f.submit "Sign up", class: 'btn btn-primary rounded-0 w-100 mb-2' %>
+
+  <% end %>
+  
+  <%= render "users/shared/links" %>
+</div>
