@@ -1,0 +1,7 @@
+# config/sidekiq.yml
+
+:scheduler:
+  :schedule:
+    hello_world:
+      cron: '* * * * *'   # Runs once per minute
+      class: HelloWorld
