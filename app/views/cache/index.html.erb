@@ -1,0 +1,22 @@
+<table class="table table-bordered mx-auto mt-5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Desc</th>
+            <th>Price</th>            
+        </tr>
+    </thead>
+    <tbody>
+        <% @products.each do |info| %>
+            <% cache info do %>
+                <tr>
+                    <td><%= info.id %></td>
+                    <td><%= info.name %></td>
+                    <td><%= info.desc %></td>
+                    <td><%= info.price %></td>
+                </tr>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>
