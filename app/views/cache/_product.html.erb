@@ -1,0 +1,10 @@
+<% product.each do |product_info| %>
+    <% cache product_info do %>
+        <ul>
+            <li> <%= product_info.name %></li>
+            <% if product_info.phones.length %>
+                <%= render 'phone', phones: product_info.phones %>
+            <% end %>
+        </ul>
+    <% end %>
+<% end %>

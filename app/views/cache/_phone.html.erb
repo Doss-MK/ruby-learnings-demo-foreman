@@ -1,0 +1,7 @@
+<% phones.each do |phone_info| %>
+    <% cache phone_info do %>
+        <ul>
+            <li><%= phone_info.name %></li>
+        </ul>
+    <% end %>
+<% end %>

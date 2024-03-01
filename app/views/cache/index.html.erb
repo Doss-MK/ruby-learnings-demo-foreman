@@ -1,3 +1,4 @@
+<h3>Default Fragment Caching</h3>
 <table class="table table-bordered mx-auto mt-5">
     <thead>
         <tr>
@@ -20,3 +21,10 @@
         <% end %>
     </tbody>
 </table>
+
+<h3>Collection Caching</h3>
+<%= render 'users', collection: @users, cached: true %>
+
+<h3>Russion Doll Caching</h3>
+
+<%= render 'product', product: @product_phone %>
