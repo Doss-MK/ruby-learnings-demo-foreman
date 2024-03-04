@@ -1,0 +1,2 @@
+class Dev < Worker
+end
