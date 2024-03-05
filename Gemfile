@@ -36,3 +36,4 @@ gem 'omniauth-rails_csrf_protection'
 gem 'foreman'
 gem "sidekiq-scheduler", "~> 5.0"
 gem "dalli"
+gem "pundit", "~> 2.3"

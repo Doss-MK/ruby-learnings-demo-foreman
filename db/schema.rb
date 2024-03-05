@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_05_111038) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_05_134416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.boolean "published"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -283,6 +291,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_111038) do
     t.string "last_name"
     t.string "uid"
     t.string "provider"
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
