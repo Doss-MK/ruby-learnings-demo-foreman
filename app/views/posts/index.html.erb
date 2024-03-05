@@ -1,0 +1,40 @@
+<table class="table table-bordered table-striped m-5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Post Title</th>
+            <th>Post Content</th>
+            <th>Post Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% Post.includes(:comments).map do |post_info| %>
+            <tr>
+                <td><%= post_info.id %></td>
+                <td><%= post_info.title %></td>
+                <td><%= post_info.content %></td>
+                <td><%= post_info.comments.any? ? post_info.comments.first.comment : "-" %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= form_with model: @post, class: "m-5" do |form| %>
+    <div class="w-50 mb-3">
+        <%= form.label :title, "Post Title" %>
+        <%= form.text_field :title, class: "form-control" %>
+    </div>
+    <div class="w-50 mb-3">
+        <%= form.label :content, "Post Content" %>
+        <%= form.text_field :content, class: "form-control" %>
+    </div>
+    <%= form.fields_for :comments do |comment_form| %>
+        <div class="w-50 mb-3">
+            <%= comment_form.label :comment, "Post Comment" %>
+            <%= comment_form.text_field :comment, class: "form-control" %>
+        </div>
+    <% end %>
+    <div>
+        <%= form.submit "Submit", class: "btn btn-primary" %>
+    </div>
+<% end %>

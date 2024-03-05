@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   # Defines the root path route ("/")
   root "home#index"
+
+  resources :posts
 end
