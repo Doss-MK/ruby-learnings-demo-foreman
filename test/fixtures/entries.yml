@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  entryable_type: MyString
+  entryable_id: 1
+
+two:
+  entryable_type: MyString
+  entryable_id: 1

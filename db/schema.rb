@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_04_113730) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_05_060353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,12 +80,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_113730) do
     t.bigint "task_id", null: false
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.string "entryable_type"
+    t.integer "entryable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_games_on_product_id"
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "manager_histories", force: :cascade do |t|
@@ -98,6 +111,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_113730) do
 
   create_table "managers", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "subject"
+    t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
