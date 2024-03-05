@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_05_060353) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_05_081151) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.bigint "book_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_authors_on_book_id"
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "clients", force: :cascade do |t|
     t.string "first_name"
@@ -25,6 +39,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_060353) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "active"
+    t.integer "status"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -101,6 +116,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_060353) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "machines", force: :cascade do |t|
+    t.string "name"
+    t.integer "available_quantity"
+    t.integer "lock_version"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "manager_histories", force: :cascade do |t|
     t.string "exp"
     t.bigint "manager_id", null: false
@@ -120,6 +143,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_060353) do
     t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "order_date"
+    t.bigint "reviewer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reviewer_id"], name: "index_orders_on_reviewer_id"
   end
 
   create_table "parents", force: :cascade do |t|
@@ -174,6 +205,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_060353) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reviewers", force: :cascade do |t|
+    t.string "name"
+    t.bigint "review_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_reviewers_on_review_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "content"
+    t.bigint "book_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_reviews_on_book_id"
   end
 
   create_table "student_projects", force: :cascade do |t|
@@ -239,15 +286,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_060353) do
     t.string "type"
   end
 
+  add_foreign_key "authors", "books"
   add_foreign_key "comments", "posts"
   add_foreign_key "departments", "managers"
   add_foreign_key "employee_tickets", "employees"
   add_foreign_key "employee_tickets", "tickets"
   add_foreign_key "games", "products"
   add_foreign_key "manager_histories", "managers"
+  add_foreign_key "orders", "reviewers"
   add_foreign_key "parents", "players"
   add_foreign_key "phones", "products"
   add_foreign_key "players", "teams"
+  add_foreign_key "reviewers", "reviews"
+  add_foreign_key "reviews", "books"
   add_foreign_key "student_projects", "projects"
   add_foreign_key "student_projects", "students"
 end

@@ -17,6 +17,8 @@ class Client < ApplicationRecord
     scope :clients_by_country, -> (country_name) { where(country: country_name.downcase.to_s) }
     scope :categories_age, -> (min,max) { where("age > :min OR age < :max", { min: min, max: max }) }
 
+    enum :status, [:joined, :releaved]
+
     before_save do 
         puts "before-save has been called"
     end
