@@ -22,4 +22,14 @@ Rails.application.routes.draw do
   resources :posts
   resources :songs
   resources :articles
+
+  namespace :api do 
+    namespace :v1 do 
+      resources :clients do 
+        collection do 
+          get "get_clients"
+        end
+      end
+    end
+  end
 end
