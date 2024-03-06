@@ -37,3 +37,5 @@ gem 'foreman'
 gem "sidekiq-scheduler", "~> 5.0"
 gem "dalli"
 gem "pundit", "~> 2.3"
+gem "searchkick", "~> 5.3"
+gem "elasticsearch", "~> 8.12"

@@ -1,7 +1,6 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  get 'cache/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -18,10 +17,13 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   # Defines the root path route ("/")
   root "home#index"
+  get 'cache/index'
+  get 'search/search'
 
   resources :posts
   resources :songs
   resources :articles
+  resources :notifications
 
   namespace :api do 
     namespace :v1 do 
