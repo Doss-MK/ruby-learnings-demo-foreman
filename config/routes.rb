@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   root "home#index"
   get 'cache/index'
   get 'search/search'
+  get 'main/index'
 
   resources :posts
   resources :songs
